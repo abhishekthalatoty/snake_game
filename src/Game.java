@@ -85,7 +85,7 @@ public class Game extends JFrame
 
     boolean selfEat()
     {
-        for(int i=3; i< snake1.length() ; i++) {
+        for(int i=2; i< snake1.length() ; i++) {
             if (meet(snake1.body.get(0), snake1.body.get(i))) {
                 return true;
             }
