@@ -13,7 +13,7 @@ public class Game extends JFrame
     static final int wallx2 = scrsizex-20;
     static final int wally2 = scrsizey -20;
     static final int gamespeed = 100;
-    static final int cellwidth = 10;
+    static final int cellwidth = 20;
     static Snake snake1 = new Snake();
     static Point food1 = new Point();
     Random rand = new Random();
@@ -21,8 +21,8 @@ public class Game extends JFrame
 
     void generateFood(Point x)
     {
-        x.x=rand.nextInt(25)*cellwidth+10;
-        x.y=rand.nextInt(25)*cellwidth+10;
+        x.x=rand.nextInt(wallx2/cellwidth)*cellwidth+10;
+        x.y=rand.nextInt(wally2/cellwidth)*cellwidth+10;
     }
 
     public Game()
@@ -79,8 +79,8 @@ public class Game extends JFrame
 
     boolean collide()
     {
-        return(snake1.body.get(0).y<wally1+10 || snake1.body.get(0).y > wally2-10 ||
-                snake1.body.get(0).x <wallx1+10 || snake1.body.get(0).x> wallx2-10);
+        return(snake1.body.get(0).y<wally1+cellwidth || snake1.body.get(0).y > wally2-cellwidth ||
+                snake1.body.get(0).x <wallx1+cellwidth || snake1.body.get(0).x> wallx2-cellwidth);
     }
 
     boolean selfEat()
@@ -121,7 +121,7 @@ public class Game extends JFrame
         {
             g.setColor(Color.BLACK);
             for(int i=0;i<Game.snake1.length();i++){
-                g.fillRect(Game.snake1.body.get(i).x,Game.snake1.body.get(i).y,10,10);
+                g.fillRect(Game.snake1.body.get(i).x,Game.snake1.body.get(i).y,cellwidth,cellwidth);
             }
             g.setColor(Color.BLUE);
             g.fillRect(food1.x,food1.y,cellwidth,cellwidth);
